@@ -35,7 +35,7 @@ $(OBJ_DIR)%.class: $(SRCS_DIR)%.java
 	@javac -d . $<
 
 $(NAME).class: $(NAME).java
-	@echo "$(GREEN) Compile $<"
+	@echo "$(GREEN) Compile $< $(NC)"
 	@javac $(NAME).java
 	@echo "$(NC)"
 
