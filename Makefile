@@ -6,7 +6,17 @@ NAME=Main
 SRCS_DIR = srcs/
 
 SRC_FILES = Tower.java\
-			WeatherTower.java
+			WeatherTower.java\
+			Aircraft.java\
+			AircraftFactory.java\
+			Baloon.java\
+			Coordinates.java\
+			Flyable.java\
+			Hellicopter.java\
+			JetPlane.java\
+			Parser.java\
+			WeatherProvider.java\
+			ErrorHandler.java\
 
 OBJ_DIR = pack/
 OBJ_FILES = $(SRC_FILES:.java=.class)
