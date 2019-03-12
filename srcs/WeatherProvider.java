@@ -1,5 +1,7 @@
 package pack;
 
+import java.util.Arrays;
+
 /**
  * WeatherProvider
  */
@@ -19,24 +21,24 @@ public class WeatherProvider {
         return _weatherProvider;
     }
 
-    private String _weather = {"SUN","RAIN","SNOW","FOG"};
+    private String[] _weather = new String[] {"SUN","RAIN","SNOW","FOG"};
 
     public String getCurrentWeather(Coordinates coordinates){
         if (coordinates.getHeight() >= this._sunLimit)
-            return _weather.get(0);
+            return _weather[0];
         if (coordinates.getLongitude() <= this._longitudeLimit)
         {
             if (coordinates.getLatitude() <= this._latitudeLimit)
-                return _weather.get(2);
+                return _weather[2];
             else 
-                return _weather.get(1);
+                return _weather[1];
         }
         else
         {
             if (coordinates.getLatitude() > this._latitudeLimit)
-                return _weather.get(0);
+                return _weather[0];
             else 
-                return _weather.get(3);
+                return _weather[3];
         }
     };
 }

@@ -1,6 +1,8 @@
 package pack;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 import srcs.*;
 

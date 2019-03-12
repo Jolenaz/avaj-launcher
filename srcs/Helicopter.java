@@ -1,13 +1,13 @@
 package pack;
 
 /**
- * Baloon
+ * Helicopter
  */
-public class Baloon extends Aircraft {
+public class Helicopter extends Aircraft{
 
     private WeatherTower _weatherTower;
 
-    public Baloon(String name, Coordinates coord){
+    public Helicopter(String name, Coordinates coord){
         super(name, coord);
     }
     
@@ -15,9 +15,9 @@ public class Baloon extends Aircraft {
         this._weatherTower = weatherTower;
         super.registerTower(weatherTower);
     }
-
+    
     public String toString(){
-        return "Baloon : " + super.toString();
+        return "Helicopter : " + super.toString();
     }
 
 }

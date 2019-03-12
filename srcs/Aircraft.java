@@ -3,7 +3,7 @@ package pack;
 /**
  * Aircraft
  */
-public class Aircraft {
+public class Aircraft implements Flyable {
 
     protected long _id;
     protected String _name;
@@ -24,6 +24,14 @@ public class Aircraft {
 
     public String toString(){
         return("name: " + this._name + ", id: " + this._id + ", coord: " + this._coordinates.toString() );
+    }
+
+    public void updateConditions(){
+
+    }
+    
+    public void registerTower(WeatherTower weatherTower){
+        weatherTower.register(this);
     }
 
 }

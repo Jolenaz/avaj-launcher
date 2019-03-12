@@ -6,17 +6,17 @@ NAME=Main
 SRCS_DIR = srcs/
 
 SRC_FILES = Coordinates.java\
+			Flyable.java\
+			Tower.java\
 			WeatherTower.java\
 			Aircraft.java\
 			AircraftFactory.java\
 			Baloon.java\
-			Flyable.java\
-			Hellicopter.java\
+			Helicopter.java\
 			JetPlane.java\
 			Parser.java\
 			WeatherProvider.java\
 			ErrorHandler.java\
-			Tower.java\
 
 OBJ_DIR = pack/
 OBJ_FILES = $(SRC_FILES:.java=.class)
@@ -27,12 +27,12 @@ GREEN=\033[1;32m
 YEL=\033[1;33m
 NC=\033[0m
 
-all: $(OBJ) $(NAME).class
+all: pack $(NAME).class
 	@echo "$(YEL) Project Compiled $(NC)"
 
-$(OBJ_DIR)%.class: $(SRCS_DIR)%.java
-	@echo "$(GREEN) Compile $< $(NC)"
-	@javac -d . $<
+pack: srcs/*.java
+	@echo "$(GREEN) Compile pack $(NC)"
+	@javac -d . srcs/*
 
 $(NAME).class: $(NAME).java
 	@echo "$(GREEN) Compile $< $(NC)"
