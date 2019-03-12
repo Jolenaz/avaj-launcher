@@ -8,5 +8,8 @@ public class Main{
 
         System.out.println(rogueOne.toString());
         System.out.println(roguetwo.toString());
+
+        System.out.println();
+
     }
 }
