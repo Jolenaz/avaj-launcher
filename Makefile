@@ -40,14 +40,10 @@ $(NAME).class: $(NAME).java
 	@javac $(NAME).java
 	@echo "$(NC)"
 
-clean:
+fclean:
 	@echo "$(RED) clean"
 	rm -rf $(OBJ_DIR)
-	@echo "$(NC)"
-
-fclean: clean
-	@echo "$(RED) fclean"
-	rm -rf $(NAME).class
+	rm -rf *.class
 	@echo "$(NC)"
 
 re: fclean all
