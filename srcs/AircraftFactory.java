@@ -8,22 +8,17 @@ import pack.Coordinates;
 public class AircraftFactory {
 
     public Flyable newAirecraft(String type, String name, int longitude, int latitude, int height){
-        Aircraft ret;
         Coordinates coor = new Coordinates(longitude, latitude, height);
         switch (type){
             case "Baloon":
-                ret = new Baloon(name, coor);
-                break;
+                return new Baloon(name, coor);
             case "JetPlane":
-                ret = new JetPlane(name, coor);
-                break;
+                return new JetPlane(name, coor);
             case "Helicopter":
-                ret = new Helicopter(name, coor);
-                break;
+                return new Helicopter(name, coor);
             default:
-                ret = null;
+                return null;
         }
-        return ret;
     }
 
 }

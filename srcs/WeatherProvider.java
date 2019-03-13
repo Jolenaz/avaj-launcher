@@ -1,6 +1,6 @@
 package pack;
 
-import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * WeatherProvider
@@ -13,9 +13,7 @@ public class WeatherProvider {
     private int _longitudeLimit = 180;
     private int _latitudeLimit = 10;
 
-    private WeatherProvider(){
-        
-    };
+    private WeatherProvider(){};
 
     public static WeatherProvider getProvider(){
         return _weatherProvider;
@@ -40,5 +38,26 @@ public class WeatherProvider {
             else 
                 return _weather[3];
         }
+    };
+
+    public void changWeather(){
+        this._sunLimit += ThreadLocalRandom.current().nextInt(-2, 2 + 1);
+        if (this._sunLimit < 0)
+            this._sunLimit = 0;
+        else if (this._sunLimit > 100)
+            this._sunLimit = 100;
+
+        this._longitudeLimit += ThreadLocalRandom.current().nextInt(-20, 20 + 1);
+        if (this._longitudeLimit < 0)
+            this._longitudeLimit += 360;
+        else
+            this._longitudeLimit %= 360; 
+
+        this._latitudeLimit += ThreadLocalRandom.current().nextInt(-0, 10 + 1);
+        if (this._latitudeLimit > 90)
+            this._latitudeLimit = 90;
+        else if (this._latitudeLimit < -90)
+            this._latitudeLimit = -90;
+
     };
 }
