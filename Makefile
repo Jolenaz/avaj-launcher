@@ -1,22 +1,23 @@
 
-NAME=Main
+NAME=Simulator
 
 .PHONY: clean fclean all re
 
 SRCS_DIR = srcs/
 
-SRC_FILES = Coordinates.java\
+SRC_FILES = Log.java\
+			Coordinates.java\
 			Flyable.java\
 			Tower.java\
+			WeatherProvider.java\
 			WeatherTower.java\
 			Aircraft.java\
 			AircraftFactory.java\
 			Baloon.java\
 			Helicopter.java\
 			JetPlane.java\
-			Parser.java\
-			WeatherProvider.java\
-			ErrorHandler.java\
+			InvalidAircraftException.java\
+
 
 OBJ_DIR = pack/
 OBJ_FILES = $(SRC_FILES:.java=.class)
@@ -52,7 +53,7 @@ fclean: clean
 re: fclean all
 
 run: all
-	java $(NAME)
+	java $(NAME) scenario.txt
 
 
 	

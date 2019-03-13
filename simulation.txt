@@ -1,0 +1,14 @@
+From Tower: Baloon : name: B1, id: 1, coord: long: 2, lat: 3, height: 20 has registered
+Baloon : name: B1, id: 1, coord: long: 2, lat: 3, height: 20
+	says: it's Rainning, I hate my Job
+Baloon : name: B1, id: 1, coord: long: 2, lat: 3, height: 15
+	says: it's Sunny, go heigher
+Baloon : name: B1, id: 1, coord: long: 4, lat: 3, height: 19
+	says: it's Snowing for me, am cold!!
+Baloon : name: B1, id: 1, coord: long: 4, lat: 3, height: 4
+	says: it's the fog, wher the hell am I?
+Baloon : name: B1, id: 1, coord: long: 4, lat: 3, height: 1
+	says: it's Sunny, go heigher
+Baloon : name: B1, id: 1, coord: long: 6, lat: 3, height: 5
+	says: it's Snowing for me, am cold!!
+Baloon : name: B1, id: 1, coord: long: 6, lat: 3, height: 0 is now Landed

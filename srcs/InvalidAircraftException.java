@@ -1,4 +1,4 @@
-package simulator.aircraft;
+package pack;
 
 public class InvalidAircraftException extends Exception
 {

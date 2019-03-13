@@ -1,4 +1,4 @@
-package simulator;
+package pack;
 
 import java.io.*;
 
@@ -11,7 +11,6 @@ public abstract class Log
 	** Constructor
 	*/
 	private Log() {}
-
 
 	/*
 	** Public Method
@@ -37,8 +36,9 @@ public abstract class Log
 		{
 			byte	byteMsg[] = new String(message + "\n").getBytes();
 
-			if (Log.isOpen)
+			if (Log.isOpen){
 				Log.outputFile.write(byteMsg);
+			}
 		}
 		catch (IOException e)
 		{

@@ -26,6 +26,8 @@ public class Aircraft {
         return("name: " + this._name + ", id: " + this._id + ", coord: " + this._coordinates.toString() );
     }
 
-
+    protected void moveTo(Coordinates next){
+        this._coordinates.moveTo(next);        
+    }
 
 }

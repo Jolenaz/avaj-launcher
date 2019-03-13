@@ -2,20 +2,19 @@ package pack;
 
 import java.util.Random;
 
-
-import srcs.*;
-
 /**
  * WeatherTower
  */
 public class WeatherTower extends Tower{
 
+    private static WeatherProvider _wp = WeatherProvider.getProvider();
+
     public String getWeather(Coordinates coordinates){
-        return WeatherProvider.getProvider().getCurrentWeather(coordinates);
+        return _wp.getCurrentWeather(coordinates);
     };
-
     
+    public void changeWeather(){
+        conditionsChanged();
+    }
 
-
-    
 }

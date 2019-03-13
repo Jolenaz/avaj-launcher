@@ -1,34 +1,28 @@
-package simulator;
+import pack.*;
 
-import simulator.weather.*;
-import simulator.aircraft.*;
-import simulator.Log;
 import java.io.*;
-import java.util.Arrays;
 
-public class Simulator
-{
-	private static WeatherSimulator		weatherSimulator = new WeatherSimulator();
-	private static Flyable[]			observers;
+public class Simulator{
 
-	/*
-	** Public Methods
-	*/
-	public static void main(String[] args)
-	{
-		try
-		{
-			if (args.length != 1)
+    private static WeatherTower wt = new WeatherTower();
+    private static int nbRun = 0;
+    private static AircraftFactory af = new AircraftFactory();
+    public static void main(String[] args){
+
+        try{
+            if (args.length != 1)
 			{
-				System.err.println("Error: usage: simulator.Simulator <file>");
+				System.err.println("Error: need to pass the scenario in args");
 				return ;
 			}
-			Simulator._readFileAndInitSimulator(args[0]);
 			Log.open("simulation.txt");
-			Simulator.weatherSimulator.run(10, Simulator.observers);
+			Simulator._readFileAndInitSimulator(args[0]);
+			for (int i = 0; i < Simulator.nbRun; i++){
+                Simulator.wt.changeWeather();
+            }
 			Log.close();
-		}
-		catch (IOException e)
+        }
+        catch (IOException e)
 		{
 			System.err.println("Error : " + e.getMessage());
 		}
@@ -36,12 +30,10 @@ public class Simulator
 		{
 			System.err.println(e.getMessage());
 		}
-	}
 
-	/*
-	** Private Methods
-	*/
-	private static void _readFileAndInitSimulator(String filename) throws IOException, SimulatorFileException
+    }
+
+    private static void _readFileAndInitSimulator(String filename) throws IOException, SimulatorFileException
 	{
 		InputStream file;
 		byte		fileContent[];
@@ -64,9 +56,9 @@ public class Simulator
 		{
 			file.close();
 		}
-	}
-
-	private static void		_initSimulatorWithFileContent(String fileContent) throws SimulatorFileException
+    }
+    
+	private static void _initSimulatorWithFileContent(String fileContent) throws SimulatorFileException
 	{
 		String		lines[] = fileContent.split("\r*\n");
 
@@ -79,11 +71,9 @@ public class Simulator
 
 	private static void		_initNbOfRun(String firstLine) throws SimulatorFileException
 	{
-		int			nbRun;
-
 		try
 		{
-			Simulator.weatherSimulator.setNbRun(Integer.parseInt(firstLine));
+			Simulator.nbRun = Integer.parseInt(firstLine);
 		}
 		catch (Exception e)
 		{
@@ -93,8 +83,6 @@ public class Simulator
 
 	private static void		_initObserverList(String lines[]) throws SimulatorFileException
 	{
-		Flyable 	observers[] = new Flyable[lines.length - 1];
-		int			obsNb = 0;
 		String		line;
 		String		elements[];
 		int			lineNb = 1;
@@ -109,14 +97,9 @@ public class Simulator
 				elements = line.split(" ");
 				if (elements.length != 5)
 					throw new SimulatorFileException(lineNb, "invalid format");
-				observers[obsNb] = AircraftFactory.newAircraft(elements[0],		// type
-																elements[1],	// name
-																Integer.parseInt(elements[2]),	// longitute
-																Integer.parseInt(elements[3]),	// latitude
-																Integer.parseInt(elements[4]));	// height
-				obsNb++;
+                Flyable tmp = Simulator.af.newAircraft(elements[0],	elements[1], Integer.parseInt(elements[2]),	Integer.parseInt(elements[3]), Integer.parseInt(elements[4]));
+				tmp.registerTower(Simulator.wt);
 			}
-			Simulator.observers = observers;
 		}
 		catch (NumberFormatException e)
 		{
@@ -136,6 +119,6 @@ class SimulatorFileException extends Exception
 {
 	SimulatorFileException(int line, String message)
 	{
-		super("Error line " + line + ": " + message);
+		super("Error: line " + line + ": " + message);
 	}
 }
